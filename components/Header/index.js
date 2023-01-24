@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import Image from "next/image";
-import NotionLogo from "../../assets/notion_logo.png";
+import NotionLogo from "../../assets/notionlogo.png";
 import { BsLightningCharge } from "react-icons/bs";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { FiBarChart2 } from "react-icons/fi";
@@ -75,6 +75,7 @@ function navbar() {
 
 
     const [open, setOpen] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
 
     return (
         <div>
@@ -83,12 +84,12 @@ function navbar() {
                 {/* logo */}
                 <a href='/' className=''>
                     <div className='flex'>
-                        <Image src={NotionLogo} width={120} height={40} className="object-contain" />
+                        <Image src={NotionLogo} width={120} height={"auto"} className="object-contain" />
                     </div>
                 </a>
                 {/* nav tabs */}
                 <div className='px-16 opacity-70'>
-                    <ul className='flex gap-8 text-[16px] items-center font-semibold'>
+                    <ul className='flex gap-8 text-[16px] items-center font-semibold' onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
                         {NavTabs.map((items, index) => {
 
                             {/* if (index == 1 || index == 3) {
@@ -105,10 +106,28 @@ function navbar() {
                                 <li key={index}>
                                     {
                                         items.subMenu ? (
-                                            <li key={index}>
-                                                <button type="button" aria-haspopup="menu">
+                                            <li key={index} className="" onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
+                                                <button type="button" aria-haspopup="menu" className='hover:bg-slate-50 hover:px-2 px-2  hover:rounded-md'>
                                                     {items.tab}{' '}
                                                 </button>
+                                                {dropdown ?
+                                                    (
+                                                        <div className='border p-2 rounded-md absolute top-13 gap-4 bg-slate-50'>
+                                                            {
+                                                                items.subMenu.map((item, index) => (
+                                                                    <li key={index}>
+                                                                        <a href={items.link}> {item.tab} </a>
+
+                                                                    </li>
+                                                                ))
+                                                            }
+                                                        </div>
+                                                    ) :
+                                                    (
+                                                        <div></div>
+                                                    )}
+
+
                                             </li>
                                         ) : <a href={items.link}>{items.tab}</a>
                                     }

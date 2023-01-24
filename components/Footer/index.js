@@ -19,7 +19,7 @@ function index() {
                         <p className='text-[14px] font-normal opacity-80 py-2'>One email per week. Unsubscribe anytime.</p>
                     </div>
                     <div className='flex lg:justify-end justify-start'>
-                        <Image src={NotionVerification} width={100} height={100} alt="" className='object-contain' />
+                        <Image src={NotionVerification} width={100} height={80} alt="" className='object-contain' />
                     </div>
                 </div>
                 <div className='py-8'>
