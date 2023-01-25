@@ -1,13 +1,12 @@
 import Image from 'next/image';
 import React, { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
-// import Avatar1 from "../../../assets/avatar1.png";
-// import Header from "../../components/Header/index.js";
-// import MobileView from '../../components/Sidebar/mobileView.js';
-// import Footer from "../../components/Footer/index.js";
+import Avatar1 from "../../../assets/avatar1.png";
+import Header from "../../components/Header/index";
+import MobileView from '../../components/Sidebar/mobileView';
+import Footer from "../../components/Footer/index";
 
-const questionsTab = [
-    {
+const questionsTab = [{
         que: "What is Notion?",
         ans: "Notion is an all-in-one workspace that allows you to take notes, add tasks, manage projects, and get organized. Whether you're writing or planning, Notion has a versatile design for getting things done."
     },
@@ -32,22 +31,31 @@ function index() {
     const handleClose = () => {
         setShow(false);
     }
-    return (
-        <div>
-            {/* <Header /> */}
-            {/* <MobileView open={open} setopen={setOpen} /> */}
-            {/* {!open ? ( */}
-            {/* <div> */}
-            <h1 className='text-[60px] text-center py-36 font-bold'>Coming soon...</h1>
-            {/* <Footer /> */}
-            {/* </div> */}
+    return ( <
+            div >
+            <
+            Header / >
+            <
+            MobileView open = { open }
+            setopen = { setOpen }
+            /> {
+                !open ? ( <
+                        div >
+                        <
+                        h1 className = 'text-[60px] text-center py-36 font-bold' > Coming soon... < /h1> <
+                        Footer / >
+                        <
+                        /div>
 
-            {/* ) */}
-            {/* : (<div> */}
+                    ) :
+                    ( < div >
 
-            {/* </div>)}s */}
-        </div>
-    )
-}
+                        <
+                        /div>)}
 
-export default index;
+                        <
+                        /div>
+                    )
+            }
+
+            export default index
