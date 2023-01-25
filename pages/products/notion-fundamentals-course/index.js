@@ -5,6 +5,7 @@ import Avatar1 from "../../../assets/avatar1.png";
 import Header from "../../../components/Header/index";
 import MobileView from '../../../components/Sidebar/mobileView';
 import Footer from "../../../components/Footer/index";
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 const questionsTab = [
     {
@@ -29,9 +30,7 @@ function index() {
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(false);
     const [Index, setIndex] = useState(false);
-    const handleClose = () => {
-        setShow(false);
-    }
+
     return (
         <div>
             <Header />
@@ -54,8 +53,11 @@ function index() {
                         <div className='py-8 text-start w-10/12 m-auto justify-center space-y-8 cursor-default'>
                             {
                                 questionsTab.map((items, index) => (
-                                    <div className='border rounded-md bg-white bg-opacity-5 py-2 px-4'>
-                                        <p className='text-[20px] font-semibold ' onClick={() => { setShow(!show); setIndex(index); }}>{items.que}</p>
+                                    <div className='border rounded-md bg-white bg-opacity-5 py-2 px-4' onClick={() => { setShow(!show); setIndex(index); }}>
+                                        <div className='flex items-center' >
+                                            <p className='text-[20px] font-semibold flex-1' >{items.que}</p>
+                                            {!show ? (<AiOutlinePlusCircle className='w-6 h-6' />) : (<AiOutlineMinusCircle className='w-6 h-6' />)}
+                                        </div>
                                         {show && (Index == index) ?
                                             (<div className='border-t mt-4 pt-2 text-[18px]'>
                                                 {items.ans}
