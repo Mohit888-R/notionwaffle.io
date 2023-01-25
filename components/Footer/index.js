@@ -11,7 +11,7 @@ function index() {
                 <div className='grid lg:grid-cols-2 grid-cols-1 gap-8 border-y py-8'>
                     <div className=''>
                         <h2 className='text-[20px] font-semibold opacity-90'>Get Started with Notion</h2>
-                        <p className='text-[16px] opacity-70 font-medium '>Sign up for our weekly newsletter and receive free Notion templates, free resources, access to the community, and more!</p>
+                        <div className='text-[16px] opacity-70 font-medium '>Sign up for our weekly newsletter and receive free Notion templates, free resources, access to the community, and more!</div>
                         <form className='space-x-4 pt-4'>
                             <input placeholder='Enter your email' className='border py-2 w-6/12 px-4 rounded-md drop-shadow  outline-blue-300' />
                             <button className='px-4 py-2 border bg-black text-white rounded-md drop-shadow'>Subscribe</button>
@@ -19,7 +19,7 @@ function index() {
                         <p className='text-[14px] font-normal opacity-80 py-2'>One email per week. Unsubscribe anytime.</p>
                     </div>
                     <div className='flex lg:justify-end justify-start'>
-                        <Image src={NotionVerification} width={100} height={80} alt="" className='object-contain' />
+                        <Image src={NotionVerification} width={100} height={80} alt="" className='w-16 h-16 object-contain' />
                     </div>
                 </div>
                 <div className='py-8'>

@@ -12,6 +12,12 @@ import Section12 from '../section12';
 import Section13 from '../section13';
 import Section14 from '../section14';
 import Section15 from '../section15';
+import MobileView from '../Sidebar/mobileView';
+import sparcle from "../../assets/sparcle.svg";
+import star from "../../assets/star.svg";
+import blog from "../../assets/blog.svg";
+import play from "../../assets/play.svg";
+import setting from "../../assets/setting.svg";
 
 const NavTabs = [
     {
@@ -22,19 +28,19 @@ const NavTabs = [
         tab: 'Templates',
         subMenu: [
             {
-                TabLogo: 'L',
+                TabLogo: sparcle,
                 tab: 'Premium Templates',
                 tabDesc: 'Get productive and organized with premium Notion templates.',
                 link: '/premium-notion-templates'
             },
             {
-                TabLogo: 'S',
+                TabLogo: star,
                 tab: 'Simple Templates',
                 tabDesc: 'Get started using Notion with simple Notion templates.',
                 link: '/simple-notion-templates'
             },
             {
-                TabLogo: 'F',
+                TabLogo: star,
                 tab: 'Free Templates',
                 tabDesc: 'Get started using Notion with free Notion templates.',
                 link: '/free-notion-templates'
@@ -43,25 +49,25 @@ const NavTabs = [
     },
     {
         tab: 'Courses',
-        link: '/cources'
+        link: '/courses'
     },
     {
         tab: 'Resources',
         subMenu: [
             {
-                TabLogo: 'B',
+                TabLogo: blog,
                 tab: 'Blog',
                 tabDesc: 'Learn Notion and discover new resources on our blog.',
                 link: '/blog'
             },
             {
-                TabLogo: 'V',
+                TabLogo: play,
                 tab: 'Video Lessons',
                 tabDesc: 'Learn Notion faster and easier with video lessons.',
                 link: '/notion-video-lessons'
             },
             {
-                TabLogo: 'T',
+                TabLogo: setting,
                 tab: 'Tools',
                 tabDesc: 'Discover Notion tools to power up your workspace.',
                 link: '/notion-tools'
@@ -71,11 +77,11 @@ const NavTabs = [
     }
 ]
 
-function navbar() {
-
+function navbar({ setopen }) {
 
     const [open, setOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false);
+    const [Index, setIndex] = useState(0);
 
     return (
         <div>
@@ -89,7 +95,7 @@ function navbar() {
                 </a>
                 {/* nav tabs */}
                 <div className='px-16 opacity-70'>
-                    <ul className='flex gap-8 text-[16px] items-center font-semibold' onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
+                    <div className='flex gap-8 text-[16px] items-center font-semibold' onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
                         {NavTabs.map((items, index) => {
 
                             {/* if (index == 1 || index == 3) {
@@ -103,22 +109,27 @@ function navbar() {
                                 <a href={items.link} className='' key={index}>{items.tab}</a>
                             ) */}
                             return (
-                                <li key={index}>
+                                <div key={index}>
                                     {
                                         items.subMenu ? (
-                                            <li key={index} className="" onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
-                                                <button type="button" aria-haspopup="menu" className='hover:bg-slate-50 hover:px-2 px-2  hover:rounded-md'>
+                                            <div key={index} className="" onMouseEnter={() => { setDropdown(true); setIndex(index) }} onMouseLeave={() => { setDropdown(false); }}>
+                                                <button type="button" aria-haspopup="menu">
                                                     {items.tab}{' '}
                                                 </button>
-                                                {dropdown ?
+                                                {dropdown && (Index == index) ?
                                                     (
-                                                        <div className='border p-2 rounded-md absolute top-13 gap-4 bg-slate-50'>
+                                                        <div className='border p-2 rounded-md absolute top-13 gap-4 bg-slate-200 w-[400px] '>
                                                             {
                                                                 items.subMenu.map((item, index) => (
-                                                                    <li key={index}>
-                                                                        <a href={items.link}> {item.tab} </a>
-
-                                                                    </li>
+                                                                    <div key={index} className="hover:bg-white rounded-md drop-shadow-md my-2 border px-4 py-2">
+                                                                        <div className='flex space-x-2'>
+                                                                            <Image src={item.TabLogo} width={20} height={20} className="" />
+                                                                            <a href={item.link} className="text-[18px] font-semibold"> {item.tab} </a>
+                                                                        </div>
+                                                                        <div className='text-[16px] font-normal'>
+                                                                            {item.tabDesc}
+                                                                        </div>
+                                                                    </div>
                                                                 ))
                                                             }
                                                         </div>
@@ -127,15 +138,14 @@ function navbar() {
                                                         <div></div>
                                                     )}
 
-
-                                            </li>
+                                            </div>
                                         ) : <a href={items.link}>{items.tab}</a>
                                     }
-                                </li>
+                                </div>
                             )
                         }
                         )}
-                    </ul>
+                    </div>
                 </div>
 
                 {/* login & signup button */}
@@ -153,32 +163,7 @@ function navbar() {
             </div>
 
             {/* mobile view */}
-            <div className='md:hidden flex px-4 py-4 '>
-                {
-                    !open ? (<div onClick={() => setOpen(true)}> <FiBarChart2 className='w-8 h-8 rotate-90' /> </div>) : <div ><div className='mt-1 ' onClick={() => setOpen(false)}><IoMdClose className='w-6 h-6' /></div><div><Sidebar /> </div> </div>
-                }
 
-                <a href='/' className='flex m-auto  justify-center'>
-                    <Image src={NotionLogo} width={120} height={40} className="object-contain" />
-                </a>
-
-                {/* <div>
-                    <a href='/Auth/Login' className='flex gap-4 items-center'>
-                        <BiSearchAlt className='md:w-6 md:h-6 hidden' />
-                        <button className='text-[15px] font-semibold bg-black rounded-md text-white py-1 px-2'>Log In</button>
-                    </a>
-                </div> */}
-
-            </div>
-
-
-            {!open ? (<div>
-                <Section11 />
-                <Section12 />
-                <Section13 />
-                <Section14 />
-                <Section15 />
-            </div>) : (<div></div>)}
 
         </div>
     )
