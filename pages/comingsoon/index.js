@@ -2,9 +2,9 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
 // import Avatar1 from "../../../assets/avatar1.png";
-import Header from "../../components/Header/index.js";
-import MobileView from '../../components/Sidebar/mobileView.js';
-import Footer from "../../components/Footer/index.js";
+import Header from "../../components/Header/index";
+import MobileView from '../../components/Sidebar/mobileView';
+import Footer from "../../components/Footer/index";
 
 const questionsTab = [
     {
