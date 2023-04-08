@@ -1,10 +1,44 @@
 import Image from 'next/image'
-import React from 'react';
+import React, { useState } from 'react';
 import NotionVerification from "../../assets/notionverification.jpg";
 import { AiOutlineInstagram, AiOutlineYoutube, AiOutlineTwitter } from "react-icons/ai";
-
+import {useRouter} from "next/router";
+import * as Axios from "../../api-call/index";
+import {ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function index() {
+    const router = useRouter();
+    const [email,setEmail] = useState('');
+
+    const submithandle = () => {
+        let statuscode;
+        // e.preventDefault();
+        Axios.Subscribe(email).then((response) => {
+            statuscode = response?.data?.statusCode
+            if(email === ""){
+                toast.error('Enter Email Address!', {
+                    autoClose: 2000, 
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+            else if(statuscode==300){
+                toast.warning('Email Already Registered!', {
+                    autoClose: 2000, 
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }else if(statuscode==200){
+                toast.success('Successfully registered!', {
+                    autoClose: 2000, 
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        });
+        router.push('/');
+        setEmail('');
+       
+    }
+
     return (
         <div className='px-8 m-auto flex'>
             <div>
@@ -12,10 +46,11 @@ function index() {
                     <div className=''>
                         <h2 className='text-[20px] font-semibold opacity-90'>Get Started with Notion</h2>
                         <div className='text-[16px] opacity-70 font-medium '>Sign up for our weekly newsletter and receive free Notion templates, free resources, access to the community, and more!</div>
-                        <form className='space-x-4 pt-4'>
-                            <input placeholder='Enter your email' className='border py-2 w-6/12 px-4 rounded-md drop-shadow  outline-blue-300' />
-                            <button className='px-4 py-2 border bg-black text-white rounded-md drop-shadow'>Subscribe</button>
-                        </form>
+                        <div className='space-x-4 pt-4'>
+                            <input placeholder='Enter your email' type='email' value={email} onChange={(e)=>{setEmail(e.target.value)}} className='border py-2 w-6/12 px-4 rounded-md drop-shadow  outline-blue-300' />
+                            <button className='px-4 py-2 border bg-black text-white rounded-md drop-shadow' onClick={submithandle}>Subscribe</button>
+                            <ToastContainer />
+                        </div>
                         <p className='text-[14px] font-normal opacity-80 py-2'>One email per week. Unsubscribe anytime.</p>
                     </div>
                     <div className='flex lg:justify-end justify-start'>
