@@ -15,7 +15,7 @@ const app = express();
 app.use(cors())
 const bodyParser = require('body-parser');
 const SubScription = require('./routers/subscriptionRouter');
-const Reviews = require('./routers/reviewRouter');
+const Testimonial = require('./routers/testimonialRouter');
 app.use(cors(corsOptions));
 const {connect} = require("./db/connection");
 
@@ -29,7 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json())
 app.use('/api/v1',SubScription);
-app.use('/api/v1/reviews',Reviews);
+
+app.use('/api/v1/testimonial',Testimonial);
 
 app.listen(port, ()=>{
     console.log('listening on port',port);
