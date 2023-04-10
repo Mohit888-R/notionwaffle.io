@@ -7,7 +7,7 @@ function testimonialCard({ imgsrc, userName, userComment, month, date, year }) {
 
 
     return (
-        <div className='border drop-shadow-md p-4 rounded-md' >
+        <div className='border drop-shadow-md p-4 rounded-md bg-white' >
             <div className='flex items-center gap-4'>
                 <Image src={imgsrc} width={40} height={40} alt="" className='rounded-full' />
                 <p className='font-semibold opacity-80'>{userName}</p>
