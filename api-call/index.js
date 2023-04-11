@@ -1,5 +1,6 @@
 const Axios = require('axios');
 
+const URI = 'http://localhost:5000/api/v1'
 
 
 
@@ -16,8 +17,30 @@ const MULTIPART_HEADER = {
 }
 
 export async function Subscribe(email){
-    const url = `http://localhost:5000/api/v1/subscribe`;
+    const url = `${URI}/subscribe`;
     const data = { email }; // create a data object with email field
     headers = {...headers}; // create a new headers object
     return await Axios.post(url, data, { headers }).then((response) => {return response}).catch(error=>console.log(error));
+}
+
+
+export async function PostTestimonial({username,rating,description}){
+    const url = `${URI}/testimonial/testimonials`;
+    const data = {username, rating, description};
+    headers = {...headers};
+    return await Axios.post(url,data,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+
+export async function getalltestimonials(){
+    const url = `${URI}/testimonial/getalltestimonials`;
+    headers = {...headers};
+    return await Axios.get(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+
+export async function topTestimonials(){
+    const url = `${URI}/testimonial/topTestimonials`;
+    headers = {...headers};
+    return await Axios.get(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }

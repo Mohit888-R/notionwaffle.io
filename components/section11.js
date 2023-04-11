@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar1 from "../assets/avatar1.png";
 import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
@@ -6,10 +6,26 @@ import { useRouter } from 'next/router';
 import * as Axios from '../api-call/index';
 import {ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getalltestimonials,topTestimonials } from '../api-call/index';
 
 function section11() {
     const router = useRouter();
     const [email,setEmail] = useState('');
+    const [count,setCount] = useState(0);
+   
+
+    useEffect(()=>{
+        getalltestimonials().then((response)=>{
+            setCount(response?.data?.data[1]?.Totalcounts);
+        });
+
+        // topTestimonials().then((response)=>{
+        //     // console.log(response?.data?.data);
+        //     setData(response?.data?.data)
+        // })
+    },[]);
+
+
 
     const submithandle = () => {
         let statuscode;
@@ -35,8 +51,7 @@ function section11() {
             }
         });
         router.push('/');
-        setEmail('');
-       
+        setEmail('');  
     }
 
     return (
@@ -69,7 +84,7 @@ function section11() {
                             <AiFillStar className='text-yellow-500 w-5 h-5' />
                         </div>
                         <p className='text-[14px] opacity-80'>
-                            from 462 reviews
+                            from {count} reviews
                         </p>
                     </div>
                 </div>

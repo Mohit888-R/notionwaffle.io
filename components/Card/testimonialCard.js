@@ -3,8 +3,12 @@ import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
 
 
-function testimonialCard({ imgsrc, userName, userComment, month, date, year }) {
+function testimonialCard({ imgsrc, userName, userComment, rating,  date }) {
 
+  const stars = [];
+  for (let i = 0; i < rating; i++) {
+    stars.push(<AiFillStar key={i} className='w-6 h-6 text-yellow-400' />);
+  }
 
     return (
         <div className='border drop-shadow-md p-4 rounded-md bg-white' >
@@ -13,14 +17,16 @@ function testimonialCard({ imgsrc, userName, userComment, month, date, year }) {
                 <p className='font-semibold opacity-80'>{userName}</p>
             </div>
             <div className='flex py-2'>
+                {stars}
+                {/* for(var i=0; i<rating;i++){
                 <AiFillStar className='w-6 h-6 text-yellow-400' />
+           } */}
+                {/* <AiFillStar className='w-6 h-6 text-yellow-400' />
                 <AiFillStar className='w-6 h-6 text-yellow-400' />
-                <AiFillStar className='w-6 h-6 text-yellow-400' />
-                <AiFillStar className='w-6 h-6 text-yellow-400' />
-                <AiFillStar className='w-6 h-6 text-yellow-400' />
+                <AiFillStar className='w-6 h-6 text-yellow-400' /> */}
             </div>
             <p className='opacity-90'>{userComment}</p>
-            <p className='capitalize opacity-50 py-2'>{month} {date},{year}</p>
+            <p className='capitalize opacity-50 py-2'>{date}</p>
         </div >
     )
 }
