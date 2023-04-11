@@ -2,13 +2,16 @@ const mongoose = require('mongoose');
 
 const TestimonialSchema = mongoose.Schema({
     username:{
-        type:'String'
+        type:String
     },
     rating:{
-        type:'String'
+        type:String
     },
     description:{
-        type:'String'
+        type:String
+    },
+    time:{
+        type:String
     }
 })
 
