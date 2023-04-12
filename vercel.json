@@ -8,8 +8,25 @@
     ],
     "routes":[
         {
+            "src":"/",
+            "dest":"/"
+        }, 
+        {
+            "src":"/api/v1/subscribe",
+            "dest":"/api/v1/subscribe"
+        },  
+        {
             "src":"/api/v1/testimonial/getalltestimonials",
             "dest":"/api/v1/testimonial/getalltestimonials"
-        }   
+        },
+        {
+            "src":"/api/v1/testimonial/testimonials",
+            "dest":"/api/v1/testimonial/testimonials"
+        },
+        {
+            "src":"/api/v1/testimonial/topTestimonials",
+            "dest":"/api/v1/testimonial/topTestimonials"
+        }
+        
     ]
 }
