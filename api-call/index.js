@@ -1,7 +1,7 @@
 const Axios = require('axios');
 
 const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
-
+// const URI = 'http://localhost:5000/api/v1';
 
 
 let headers = {
@@ -37,7 +37,7 @@ export async function getalltestimonials(){
     headers = {...headers};
     return await Axios.get(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
-
+ 
 
 export async function topTestimonials(){
     const url = `${URI}/testimonial/topTestimonials`;
