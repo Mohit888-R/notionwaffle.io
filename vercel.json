@@ -1,32 +1,36 @@
 {
-    "version":2,
-    "builds":[
+    "version": 2,
+    "env": {
+        "PORT": "5000",
+        "MONGODB_URI": "mongodb+srv://narukamohit88:FBzQ4d5pebP2jT0U@cluster0.rmmutgt.mongodb.net/?retryWrites=true&w=majority"
+    },
+    "builds": [
         {
-            "src":"./index.js",
-            "use":"@vercel/node"
+            "src": "./index.js",
+            "use": "@vercel/node",
+            "config": {}
         }
     ],
-    "routes":[
+    "routes": [
         {
-            "src":"/",
-            "dest":"/"
-        }, 
-        {
-            "src":"/api/v1/subscribe",
-            "dest":"/api/v1/subscribe"
-        },  
-        {
-            "src":"/api/v1/testimonial/getalltestimonials",
-            "dest":"/api/v1/testimonial/getalltestimonials"
+            "src": "/(.*)",
+            "dest": "/"
         },
         {
-            "src":"/api/v1/testimonial/testimonials",
-            "dest":"/api/v1/testimonial/testimonials"
+            "src": "/api/v1/subscribe",
+            "dest": "/routers/controllers/subscriptionController.js"
         },
         {
-            "src":"/api/v1/testimonial/topTestimonials",
-            "dest":"/api/v1/testimonial/topTestimonials"
+            "src": "/api/v1/testimonial/getalltestimonials",
+            "dest": "/routers/controllers/testimonialController.js"
+        },
+        {
+            "src": "/api/v1/testimonial/testimonials",
+            "dest": "/routers/controllers/testimonialController.js"
+        },
+        {
+            "src": "/api/v1/testimonial/topTestimonials",
+            "dest": "/routers/controllers/testimonialController.js"
         }
-        
     ]
 }
