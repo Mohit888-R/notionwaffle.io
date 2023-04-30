@@ -1,6 +1,7 @@
 const Axios = require('axios');
 
-const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
+// const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
+const URI = 'https://notinowaffle-ltr53m3al-mohit888-r.vercel.app/api/v1'
 // const URI = 'http://localhost:5000/api/v1';
 
 
