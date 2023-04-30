@@ -18,19 +18,19 @@
         },
         {
             "src": "/api/v1/subscribe",
-            "dest": "/routers/controllers/subscriptionController.js"
+            "dest": "/routers/controllers"
         },
         {
             "src": "/api/v1/testimonial/getalltestimonials",
-            "dest": "/routers/controllers/testimonialController.js"
+            "dest": "/routers/controllers"
         },
         {
             "src": "/api/v1/testimonial/testimonials",
-            "dest": "/routers/controllers/testimonialController.js"
+            "dest": "/routers/controllers"
         },
         {
             "src": "/api/v1/testimonial/topTestimonials",
-            "dest": "/routers/controllers/testimonialController.js"
+            "dest": "/routers/controllers"
         }
     ]
 }
