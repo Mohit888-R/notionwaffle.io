@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "date-and-time": "^2.4.3",
     "date-format": "^4.0.14",
     "dotenv": "^16.0.3",
@@ -19,6 +20,7 @@
     "mongodb": "^5.2.0",
     "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
+    "razorpay": "^2.8.6",
     "uuid": "^9.0.0"
   }
 }
