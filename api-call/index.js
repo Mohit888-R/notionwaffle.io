@@ -1,8 +1,8 @@
 const Axios = require('axios');
 
 // const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
-const URI = 'https://notinowaffle-ltr53m3al-mohit888-r.vercel.app/api/v1'
-// const URI = 'http://localhost:5000/api/v1';
+// const URI = 'https://notinowaffle-ltr53m3al-mohit888-r.vercel.app/api/v1'
+const URI = 'http://localhost:5000/api/v1';
 
 
 let headers = {
@@ -44,4 +44,17 @@ export async function topTestimonials(){
     const url = `${URI}/testimonial/topTestimonials`;
     headers = {...headers};
     return await Axios.get(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+export async function getRazorpayKey(){
+    const url = `${URI}/getKey`;
+    headers = {...headers};
+    return await Axios.get(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+
+export async function checkoutPayment(){
+    const url = `${URI}/payment/checkout`;
+    headers = {...headers};
+    return await Axios.post(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
