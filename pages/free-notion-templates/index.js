@@ -39,28 +39,28 @@ function index() {
                     </div>
                     <div className='m-auto justify-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-10/12 lg:gap-10 gap-4 py-10'>
 
-                        <CourseCard1 imgsrc={Img4} title="Notion Idea Manager" description="Manage and organize your ideas for future possibilities." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img4} title="Notion Idea Manager" description="Manage and organize your ideas for future possibilities." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img5} title="Notion Task Manager" description="Become more organized and productive in your daily life." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img5} title="Notion Task Manager" description="Become more organized and productive in your daily life." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img6} title="Notion Planners" description="Get more things done by managing your daily tasks and notes." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img6} title="Notion Planners" description="Get more things done by managing your daily tasks and notes." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img7} title="Notion CRM" description="Customer relationship management system in your favorite tool." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img7} title="Notion CRM" description="Customer relationship management system in your favorite tool." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img8} title="Notion Content System" description="Create more engaging and converting content by having the right system." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img8} title="Notion Content System" description="Create more engaging and converting content by having the right system." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img9} title="Notion Habit Tracker" description="Gain new habits by taking the 30-day challenge." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img9} title="Notion Habit Tracker" description="Gain new habits by taking the 30-day challenge." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img10} title="Notion Bookmark Manager" description="Simple yet effective system that allows you to manage your bookmarks." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img10} title="Notion Bookmark Manager" description="Simple yet effective system that allows you to manage your bookmarks." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img11} title="Notion Social Media Planner" description="Simple social media planner to manage all your social media content." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img11} title="Notion Social Media Planner" description="Simple social media planner to manage all your social media content." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img12} title="Notion Subscription Tracker" description="With this Notion template, you'll be able to track and review your subscriptions." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img12} title="Notion Subscription Tracker" description="With this Notion template, you'll be able to track and review your subscriptions." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
 
-                        <CourseCard1 imgsrc={Img13} title="Notion Mood Tracker" description="Get clarity on what makes you happy or sad. Improve your mental well-being." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img13} title="Notion Mood Tracker" description="Get clarity on what makes you happy or sad. Improve your mental well-being." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
 
-                        <CourseCard1 imgsrc={Img14} title="Notion Travel Manager" description="GKeep track of all your travels and plan even better new ones." link="/comingsoon" btntxt="Get it now $0" />
+                        <CourseCard1 imgsrc={Img14} title="Notion Travel Manager" description="GKeep track of all your travels and plan even better new ones." link="/comingsoon" btntxt="Get it now $0" amount="0"/>
                     </div>
                     <Footer />
                 </div>) : (<div></div>)}

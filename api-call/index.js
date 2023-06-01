@@ -49,12 +49,12 @@ export async function topTestimonials(){
 export async function getRazorpayKey(){
     const url = `${URI}/getKey`;
     headers = {...headers};
-    return await Axios.get(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+    return await Axios.get(url,{headers}).then((response)=>{ return response?.data?.key}).catch(error=>console.log(error));
 }
 
 
-export async function checkoutPayment(){
+export async function checkoutPayment(amount){
     const url = `${URI}/payment/checkout`;
     headers = {...headers};
-    return await Axios.post(url,{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+    return await Axios.post(url,{amount},{headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
