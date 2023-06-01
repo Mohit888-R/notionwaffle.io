@@ -9,26 +9,36 @@ const instance = new Razorpay({
 
 
 const checkout = async (req, res) => {
-    const options = {
-        // amount: Number(req.body.amount * 100),
-        amount: 5000,
-        currency: "INR",
-        // receipt: "order_rcptid_11"   // receipte kha hai receipte 
-    };
-    const order = await instance.orders.create(options);
-
-    return res.status(200).json({
+    try {
+        const amount = parseInt(req.body.amount);
+      const options = {
+        amount: (amount * 100),
+        currency: "USD",
+        // receipt: "order_rcptid_11"
+      };
+      
+      const order = await instance.orders.create(options);
+      console.log(order);
+      
+      return res.status(200).json({
         success: true,
         order: order
-    })
-}
+      });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        success: false,
+        error: "An error occurred during checkout."
+      });
+    }
+  };
+  
 
 
 const paymentVerification = async (req, res) => {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
     const body = razorpay_order_id + "|" + razorpay_payment_id;
-
 
     var expectedSignature = crypto.createHmac('sha256', process.env.RAZORPAY_API_SECRET)
         .update(body.toString())
