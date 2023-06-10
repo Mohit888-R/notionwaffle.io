@@ -11,19 +11,28 @@ const instance = new Razorpay({
 const checkout = async (req, res) => {
     try {
         const amount = parseInt(req.body.amount);
-      const options = {
-        amount: (amount * 100),
-        currency: "USD",
-        // receipt: "order_rcptid_11"
-      };
+        if(amount === undefined || amount <= 0){
+          return res.status(200).json({
+            success: true,
+            order: order
+          });
+        }else{
+          const options = {
+            amount: (amount * 100),
+            currency: "USD",
+            // receipt: "order_rcptid_11"
+          };
+
+          const order = await instance.orders.create(options);
+          console.log(order);
+          
+          return res.status(200).json({
+            success: true,
+            order: order
+          });
+          
+        }
       
-      const order = await instance.orders.create(options);
-      console.log(order);
-      
-      return res.status(200).json({
-        success: true,
-        order: order
-      });
     } catch (err) {
       console.error(err);
       return res.status(500).json({
