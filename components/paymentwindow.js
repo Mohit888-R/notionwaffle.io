@@ -22,7 +22,6 @@ const initializeRazorpay = () => {
 
 export async function checkoutpayment(amount) {
     const res = await initializeRazorpay();
-
      console.log("amount : ",amount);
        checkoutPayment(amount).then((response) => {
             // console.log(response?.data?.order?.id);

@@ -18,6 +18,7 @@ import star from "../../assets/star.svg";
 import blog from "../../assets/blog.svg";
 import play from "../../assets/play.svg";
 import setting from "../../assets/setting.svg";
+import DownArrow from "../../assets/drop_down_arrow.svg";
 
 const NavTabs = [
     {
@@ -28,7 +29,7 @@ const NavTabs = [
         tab: 'Templates',
         subMenu: [
             {
-                TabLogo: sparcle,
+                TabLogo: star,
                 tab: 'Premium Templates',
                 tabDesc: 'Get productive and organized with premium Notion templates.',
                 link: '/premium-notion-templates'
@@ -73,7 +74,6 @@ const NavTabs = [
                 link: '/notion-tools'
             }
         ]
-
     }
 ]
 
@@ -94,8 +94,8 @@ function navbar({ setopen }) {
                     </div>
                 </a>
                 {/* nav tabs */}
-                <div className='px-16 opacity-70'>
-                    <div className='flex gap-8 text-[16px] items-center font-semibold' onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
+                <div className='px-20 '>
+                    <div className='flex gap-10 text-[16px] items-center font-semibold' onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
                         {NavTabs.map((items, index) => {
 
                             {/* if (index == 1 || index == 3) {
@@ -112,9 +112,9 @@ function navbar({ setopen }) {
                                 <div key={index}>
                                     {
                                         items.subMenu ? (
-                                            <div key={index} className="" onMouseEnter={() => { setDropdown(true); setIndex(index) }} onMouseLeave={() => { setDropdown(false); }}>
-                                                <button type="button" aria-haspopup="menu">
-                                                    {items.tab}{' '}
+                                            <div key={index} className="" onMouseLeave={() => { setDropdown(false); setIndex(0)}}>
+                                                <button type="button" aria-haspopup="menu" className='flex items-center ' onMouseEnter={() => { setDropdown(true); setIndex(index) }} >
+                                                    {items.tab}<Image src={DownArrow} alt="drop-down-arrow" width="40" height="40" className='-ml-2 mt-1'/>
                                                 </button>
                                                 {dropdown && (Index == index) ?
                                                     (

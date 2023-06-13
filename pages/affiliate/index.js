@@ -56,7 +56,7 @@ function index() {
                 <div>
                     <div className='py-20'>
                         <h1 className='lg:text-[72px] md:text-[60px] text-[40px] md:leading-[80px] leading-10 text-center font-semibold lg:w-8/12 md:w-10/12 m-10/12 flex  m-auto'>Become our affiliate and earn commission</h1>
-                        <p className='py-10 text-[20px] opacity-70 text-center font-semibold lg:w-8/12 md:w-10/12 m-10/12 flex  m-auto'>Join our affiliate program and become a member of our team! As an affiliate, you will earn commission on sales made through your unique affiliate link</p>
+                        <p className='py-10 text-[20px] opacity-70 text-center font-semibold lg:w-8/12 md:w-10/12   m-10/12 flex  m-auto'>Join our affiliate program and become a member of our team! As an affiliate, you will earn commission on sales made through your unique affiliate link</p>
                         <button className='bg-black text-white px-6 py-3 drop-shadow-sm text-[20px] rounded-md m-auto justify-center flex'>Become an affiliate</button>
                     </div>
                     <div className='py-8 text-center'>

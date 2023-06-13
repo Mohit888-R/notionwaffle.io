@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Testimonial from "../../../components/Card/testimonialCard";
 import Imgsrc from "../../../assets/avatar1.png";
-import Carousel from "../../../components/Carousel";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Header from "../../../components/Header/index";
 import MobileView from '../../../components/Sidebar/mobileView';

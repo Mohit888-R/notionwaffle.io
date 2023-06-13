@@ -12,10 +12,12 @@ function section14() {
     const [data,setData]= useState([]);
     const [count,setCount] = useState(0);
     const [page,setPage] = useState(1);
+    const [length, setlength] = useState(0);
 
     useEffect(()=>{
         topTestimonials().then((response)=>{
-            // console.log(response?.data?.data);
+            // console.log("data : ",response?.data?.data.length);
+            setlength(response?.data?.data.length);
             setData(response?.data?.data)
         })
 
@@ -40,9 +42,14 @@ function section14() {
                         </li>
                     ))}
                 </div>
-                <div className='text-center'>
-                    <button className='border border-black rounded-lg bg-gray-100 px-4 py-2' onClick={()=>setPage(page+1)}>Load More </button>
-                </div>
+                {
+                    (length > 0 )&& ((page) < (length/5)) && (
+                        <div className='text-center'>
+                        <button className='border border-black rounded-lg bg-gray-100 px-4 py-2' onClick={()=>setPage(page+1)}>Load More </button>
+                    </div>
+                    )
+                }
+               
                 <div className='border border-dashed my-8 py-4 m-auto justify-center md:flex items-center'>
                     <div className='md:flex  justify-center'>
                         <div className='flex -space-x-2 justify-center'>
