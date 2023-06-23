@@ -19,6 +19,7 @@ app.use(cors(corsOptions));
 const {connect} = require("./db/connection");
 const Razorpay = require('razorpay');
 const PaymentRoutes = require('./routers/paymentRoutes')
+const userAuthRoutes = require('./routers/userAuthRoutes');
 
 app.get('/',(req,res)=>{
     res.send("Welcome!");
@@ -47,6 +48,7 @@ const instance = new Razorpay({
 
 app.use('/api/v1/testimonial',Testimonial);
 app.use('/api/v1/payment',PaymentRoutes);
+app.use('/api/v1/authentication',userAuthRoutes);
 
 app.get('/api/v1/getKey',(req, res)=>{
     return res.status(200).json({

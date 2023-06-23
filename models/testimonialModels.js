@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const TestimonialSchema = mongoose.Schema({
+const TestimonialSchema =new mongoose.Schema({
     username:{
         type:String
     },
