@@ -19,6 +19,9 @@ import blog from "../../assets/blog.svg";
 import play from "../../assets/play.svg";
 import setting from "../../assets/setting.svg";
 import DownArrow from "../../assets/drop_down_arrow.svg";
+import avatar from "../../assets/avatar1.png";
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 const NavTabs = [
     {
@@ -78,6 +81,8 @@ const NavTabs = [
 ]
 
 function navbar({ setopen }) {
+    const router = useRouter();
+
 
     const [open, setOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false);
@@ -86,7 +91,7 @@ function navbar({ setopen }) {
     return (
         <div>
             {/* // desktop view */}
-            <div className='md:flex md:px-8 md:py-6 md:items-center hidden border-b drop-shadow-sm'>
+            <div className='md:flex md:justify-between md:px-8 md:py-6 md:items-center hidden border-b drop-shadow-sm'>
                 {/* logo */}
                 <a href='/' className=''>
                     <div className='flex'>
@@ -97,24 +102,13 @@ function navbar({ setopen }) {
                 <div className='px-20 '>
                     <div className='flex gap-10 text-[16px] items-center font-semibold' onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
                         {NavTabs.map((items, index) => {
-
-                            {/* if (index == 1 || index == 3) {
-                                return (<a className='flex cursor-pointer items-center'>
-                                    <li className='' key={index}>{items.tab}</li>
-                                    <RiArrowDropDownLine className='w-7 h-7 mt-0.5' />
-                                </a>
-                                )
-                            }
-                            return (
-                                <a href={items.link} className='' key={index}>{items.tab}</a>
-                            ) */}
                             return (
                                 <div key={index}>
                                     {
                                         items.subMenu ? (
-                                            <div key={index} className="" onMouseLeave={() => { setDropdown(false); setIndex(0)}}>
+                                            <div key={index} className="" onMouseLeave={() => { setDropdown(false); setIndex(0) }}>
                                                 <button type="button" aria-haspopup="menu" className='flex items-center ' onMouseEnter={() => { setDropdown(true); setIndex(index) }} >
-                                                    {items.tab}<Image src={DownArrow} alt="drop-down-arrow" width="40" height="40" className='-ml-2 mt-1'/>
+                                                    {items.tab}<Image src={DownArrow} alt="drop-down-arrow" width="40" height="40" className='-ml-2 mt-1' />
                                                 </button>
                                                 {dropdown && (Index == index) ?
                                                     (
@@ -148,21 +142,65 @@ function navbar({ setopen }) {
                     </div>
                 </div>
 
-                {/* login & signup button */}
-                {/* <div>
-                    <ul className='flex items-center gap-4'>
-                        <a href='/Auth/Login' className='login'>
-                            <button className='text-[15px] font-semibold'>Log In</button>
-                        </a>
 
-                        <a href='/Auth/register'>
-                            <button className=' bg-black rounded-md text-[15px] text-white py-1 px-2'>Sign Up </button>
-                        </a>
-                    </ul>
-                </div> */}
+               
+
+                    {Cookies.get('userId') === undefined || Cookies.get('userId') === null || Cookies.get('userId') === '' ? (
+                          <div className='flex  justify-center gap-4'>
+                          {router?.route !== "/Auth/Login" ? (
+                              <a href='/Auth/Login' className='login'>
+                                  <button className='bg-black rounded-md text-[15px] text-white py-1 px-2'>Log In</button>
+                              </a>
+                          ) : <div>
+                              <a href='/Auth/register' className='login'>
+                                  <button className='bg-black rounded-md text-[15px] text-white py-1 px-2'>Sign up</button>
+                              </a>
+                          </div>}
+
+
+                          <div>
+                              <div onClick={() => setOpen(!open)}>
+                                  <Image src={avatar} className="rounded-full w-10 h-10 border border-black" />
+                              </div>
+                              <div className='absolute top-20 -m-2 right-4 '>
+                                  {
+                                      open ? (<div className='border border-black  text-center bg-slate-200 rounded-md'>
+                                          <ul>
+                                              <li className='border-b border-black p-2 hover:cursor-pointer'>Profile</li>
+                                              <li className='border-b border-black p-2 hover:cursor-pointer'>Saved</li>
+                                              <li className='border-b border-black p-2 hover:cursor-pointer'>My Orders</li>
+                                          </ul>
+                                      </div>) : (<div></div>)
+                                  }
+                              </div>
+                          </div>
+                      </div>
+                    ) : (
+                    <div>
+                        <div>
+                            <div onClick={() => setOpen(!open)}>
+                                <Image src={avatar} className="rounded-full w-10 h-10 border border-black" />
+                            </div>
+                            <div className='absolute top-20 -m-2 right-4 '>
+                                {
+                                    open ? (<div className='border border-black  text-center bg-slate-200 rounded-md'>
+                                        <ul>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer'>Profile</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer'>Saved</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer'>My Orders</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer'>Logout</li>
+                                        </ul>
+                                    </div>) : (<div></div>)
+                                }
+                            </div>
+                        </div>
+                        
+                    </div>
+                    )}
+               
             </div>
 
-            {/* mobile view */}
+           
 
 
         </div>

@@ -1,4 +1,5 @@
 const Axios = require('axios');
+const Cookies = require('js-cookie');
 
 // const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
 // const URI = 'https://notinowaffle-ltr53m3al-mohit888-r.vercel.app/api/v1'
@@ -57,4 +58,20 @@ export async function checkoutPayment(amount){
     const url = `${URI}/payment/checkout`;
     headers = {...headers};
     return await Axios.post(url,{amount},{headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+
+export async function Register({username, email, password}){
+
+    const payload = {username, email, password}
+    const url = `${URI}/authentication/register`;
+    headers = {...headers};
+    return await Axios.post(url,payload, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+export async function login({email, password}){
+    const data = {email, password};
+    const url = `${URI}/authentication/login`;
+    headers = {...headers};
+    return await Axios.post(url,data, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
