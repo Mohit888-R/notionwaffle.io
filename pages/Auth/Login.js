@@ -5,8 +5,10 @@ import Footer from "../../components/Footer/index";
 import Link from 'next/link';
 import {login} from "../../api-call/index";
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 function Login() {
+  const router = useRouter();
     const [open, setOpen] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +25,9 @@ function Login() {
        login({ email, password }).then((response) => {   
 
         if(response?.data?.statusCode == 200){
+          Cookies.set('userId',response?.data?.message?.userId);
           alert('Successfully logged in');
+          router.push('/');
         }
         else if(response?.data?.success != true){
           alert('Fill out Correct Information...')
@@ -50,7 +54,7 @@ function Login() {
             <p className='uppercase text-[24px]  font-bold text-center'>YOUR ACCOUNT FOR <br></br> EVERYTHING NOTIONWAFFLE</p>
             <form className='py-8 flex flex-col space-y-4' onSubmit={handleSubmit}>
                 <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email address' className='px-4 py-2 border text-[16px] font-normal'/>
-                <input type="text" value={password}  onChange={(e)=>setPassword(e.target.value)} placeholder='Password' className='px-4 py-2 border text-[16px] font-normal'/>
+                <input type="password" value={password}  onChange={(e)=>setPassword(e.target.value)} placeholder='Password' className='px-4 py-2 border text-[16px] font-normal'/>
                 {/* <div className='flex gap-8'>
                     <div className='gap-2 flex flex-1 text-[12px] font-semibold'>
                     <input type="checkbox" id='check'></input>

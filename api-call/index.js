@@ -62,7 +62,7 @@ export async function checkoutPayment(amount){
 
 
 export async function Register({username, email, password}){
-
+    
     const payload = {username, email, password}
     const url = `${URI}/authentication/register`;
     headers = {...headers};
