@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import Image from "next/image";
 import NotionLogo from "../../assets/notionlogo.png";
 import star from "../../assets/star.svg";
@@ -75,6 +75,15 @@ function navbar({ setopen }) {
     const [open, setOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const [Index, setIndex] = useState(0);
+    const [userId, setUserId] = useState(false);
+
+    useEffect(()=>{
+        if((Cookies.get('userId') === undefined || Cookies.get('userId') === null || Cookies.get('userId') === '' ) ){
+            setUserId(true);
+        }else{
+            setUserId(false);
+        }
+    },[]);
 
     return (
         <div>
@@ -131,8 +140,7 @@ function navbar({ setopen }) {
 
 
 
-
-                {(Cookies.get('userId') === undefined || Cookies.get('userId') === null || Cookies.get('userId') === '' ) ? (
+                {userId ? (
                     <div className='flex items-center justify-center gap-4'>
                         {router?.route !== "/Auth/Login" ? (
                             <div>

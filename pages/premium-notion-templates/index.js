@@ -24,7 +24,7 @@ function index() {
         <>
             <Header />
             <MobileView open={open} setopen={setOpen} />
-            {!open ? (
+            {(!open) ? (
                 <div>
                     <div className='py-20'>
                         <h1 className='lg:text-[72px] md:text-[60px] text-[40px] md:leading-[80px] leading-10 text-center font-semibold lg:w-8/12 md:w-10/12 m-10/12 flex  m-auto'>Premium Notion templates to make you 2x productive</h1>
