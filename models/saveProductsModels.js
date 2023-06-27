@@ -5,22 +5,11 @@ const saveProductSchema = new mongoose.Schema({
         type: 'string',
         required: true
     },
-    title : {
-        type : 'string',
-        required: true
-    },
-    category : {
-        type: 'string',
-        required:true
-    },
-    description : {
-        type: 'string',
-        required: true
-    },
-    price : {
-        type: 'string',
-        required: true
-    }
+   savingList : {
+    type : [{type: 'string',
+    required: true}],
+    required: true
+   }
 });
 
 module.exports = new mongoose.model('saveProducts',saveProductSchema);
