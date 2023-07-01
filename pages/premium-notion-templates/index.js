@@ -14,11 +14,19 @@ import Img8 from "../../assets/premiumNotionTemplate/img8.png"
 import { templatesData } from "../../utils/constant";
 import { useRouter } from 'next/router';
 import { data } from 'autoprefixer';
+import { product } from '../../api-call';
 
 function index() {
     const router = useRouter();
     const [open, setOpen] = useState(false);
+    const [data, setData] = useState([]);
 
+    useEffect(() => {
+        product().then((response) => {
+            setData(response?.data?.data)
+        })
+    }, [router])
+    console.log(data);
 
     return (
         <>
@@ -32,8 +40,8 @@ function index() {
                     </div>
                     <div className='m-auto justify-center grid md:grid-cols-2 grid-cols-1 w-10/12 lg:gap-10 gap-4 py-28'>
                         {
-                            templatesData.map((items, index) => (
-                                (items?.category) === "Premium Notion Templates" && <CourseCard key={index} imgsrc={items?.imgsrc} category={items?.category} title={items?.title} description={items?.description} link={items?.description} btntxt={items?.btntxt} amount={items?.amount} />
+                            data.map((items, index) => (
+                                (items?.categoryName) === "Premium Notion Templates" && <CourseCard key={index}  category={items?.categoryName} title={items?.templateName} description={items?.description} link={items?.templateName} btntxt={items?.price} amount={items?.price} />
                             ))
                         }
                     </div>

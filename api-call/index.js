@@ -75,3 +75,9 @@ export async function login({email, password}){
     headers = {...headers};
     return await Axios.post(url,data, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
+
+export async function product(){
+    const url = `${URI}/product/getProducts`;
+    headers = {...headers};
+    return await Axios.get(url, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
