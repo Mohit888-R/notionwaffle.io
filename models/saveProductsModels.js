@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const saveProductSchema = new mongoose.Schema({
     userId : {
-        type: 'string',
+        type: String,
         required: true
     },
    savingList : {
-    type : [{type: 'string',
+    type : [{type: String,
     required: true}],
     required: true
    }

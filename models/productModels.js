@@ -1,44 +1,49 @@
 const mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
 const ProductSchema = new mongoose.Schema({
     productId: {
-        type: 'string',
-        required: true
+        type: String
     },
     imgUrl: {
-        type: [{
-            type: 'string',
-            required: true
-        }],
-        required: true
-    },
-    categoryName: {
-        type: 'string',
-        required: true
-    },
-    templateName: {
-        type: 'string',
-        required: true
-    },
-    description: {
-        type: 'string',
-        required: true
-    },
-    price: {
-        type: 'string',
-        required: true
-    },
-    videoLink: {
         type: [{
             type: 'String',
             required: true
         }],
         required: true
     },
+    categoryName: {
+        type: String,
+        required: true
+    },
+    templateName: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        required: true
+    },
+    videoLink: {
+        type: [{
+            type: String,
+            required: true
+        }],
+        required: true
+    },
     aboutTemplate: {
-        type: 'string',
+        type: String,
         required: true
     }
 });
 
-module.exports = new mongoose.model('ProductSchema', products);
+ProductSchema.pre('save', async function (next) {
+    this.productId = this._id;
+    next();
+});
+
+module.exports = new mongoose.model('products', ProductSchema);
