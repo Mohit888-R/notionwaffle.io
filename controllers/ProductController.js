@@ -64,5 +64,18 @@ const getProductById = async (req, res) => {
     }
 }
 
+const updateProduct = async (req, res) => {
+    try {
+      const filter = { categoryName: "Simple Notion Templates" };
+  
+      const newImgUrl = 'https://raw.githubusercontent.com/Mohit888-R/notionwaffle.io/main/assets/premiumNotionTemplate/img1.png';
+      const update = { $push: { imgUrl: newImgUrl } };
+      const result = await products.updateMany(filter, update);
+      console.log(result, filter);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  
 
-module.exports = { postProduct, getProducts, getProductById }
+module.exports = { postProduct, getProducts, getProductById, updateProduct }
