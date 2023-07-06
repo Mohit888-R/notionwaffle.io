@@ -41,7 +41,7 @@ function index() {
                     <div className='m-auto justify-center grid md:grid-cols-2 grid-cols-1 w-10/12 lg:gap-10 gap-4 py-28'>
                         {
                             data.map((items, index) => (
-                                (items?.categoryName) === "Premium Notion Templates" && <CourseCard key={index}  category={items?.categoryName} title={items?.templateName} description={items?.description} link={items?.templateName} btntxt={items?.price} amount={items?.price} />
+                                (items?.categoryName) === "Premium Notion Templates" && <CourseCard key={index} imgsrc={items?.imgUrl[0]}  category={items?.categoryName} title={items?.templateName} description={items?.description} link={items?.templateName} btntxt={items?.price} amount={items?.price} />
                             ))
                         }
                     </div>

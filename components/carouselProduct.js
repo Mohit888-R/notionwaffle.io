@@ -14,7 +14,6 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation]);
 
 function carouselProduct({ media }) {
-    console.log(media);
     return (
         <div className='my-8 w-8/12'>
             <Swiper
@@ -32,7 +31,7 @@ function carouselProduct({ media }) {
             >
                 <div className="swiper-button-prev  "></div>
                 {
-                    media.map((items, index) => (
+                    media?.map((items, index) => (
                         <SwiperSlide key={index}>
                             <iframe
                                 width="853"

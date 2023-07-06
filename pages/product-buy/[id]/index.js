@@ -9,6 +9,7 @@ import CarouselProduct from "../../../components/carouselProduct";
 import { useRouter } from 'next/router';
 import {templatesData} from "../../../utils/constant";
 import {checkoutpayment} from '../../../components/paymentwindow';
+import { product } from '../../../api-call';
 
 function index() { 
     const router = useRouter();
@@ -23,19 +24,21 @@ function index() {
     
 
     const titlehead = router?.query?.title;
-
     useEffect(()=>{
-        templatesData.map((items)=>{
-            console.log(router?.query)
-            if(items?.title === router?.query?.title){
-                setAmount(items.amount);
-                setDescription(items.description);
-                setCategory(items.category);
-                setAbout(items.about);
-                setMedia(items.media)
-            }
+        product().then((response) => {
+            response?.data?.data.map((items,key)=>{
+                if(items.templateName === router?.query?.title){
+                    setAmount(items?.price)
+                    setDescription(items.description);
+                    setCategory(items.categoryName);
+                    setAbout(items.aboutTemplate);
+                    setMedia(items.videoLink)
+                }
+            })
         })
     },[router?.query])
+
+    console.log("price",category)
 
 
     return (
