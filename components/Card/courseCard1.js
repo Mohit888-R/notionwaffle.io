@@ -21,7 +21,7 @@ function courseCard1({ imgsrc, title, description, link, btntxt, amount }) {
                     <p className='md:text-[16px] text-[16px] py-2 font-normal opacity-80'>{description}</p>
                     {/* <button onClick={()=>{checkoutpayment(amount);handletoast(amount)}}  className='text-[18px]  drop-shadow-md  bg-white border rounded-md py-2 my-4 px-4'>{btntxt} </button> */}
                     <Link href={`/product-buy/${title}?title=${title}`}>
-                    <button  className='text-[18px]  drop-shadow-md  bg-white border rounded-md py-2 my-4 px-4'>{btntxt} </button>
+                    <button  className='text-[18px]  drop-shadow-md  bg-white border rounded-md py-2 my-4 px-4'>Buy in ${btntxt} </button>
                     </Link>
                 </div>
             {/* </Link> */}
