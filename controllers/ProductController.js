@@ -66,13 +66,12 @@ const getProductById = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-    //   const filter = { price : {$in : ["59"]} };
-        const filter = { imgUrl : "https://raw.githubusercontent.com/Mohit888-R/notionwaffle.io/main/assets/premiumNotionTemplate/img8.png"}
-    //   const newImgUrl = "https://raw.githubusercontent.com/Mohit888-R/notionwaffle.io/main/assets/simpleNotionTemplate/img1.jpg";
-    // const newImgUrl = "FImg4";
-    const newtemplateName = "Social Media Kit";
-      const update = { $set: { templateName: newtemplateName } };
-          const result = await products.updateMany(filter,update);
+    //   const filter = { price : {$in : ["0"]} };
+        const filter = {productId: "64a0423faa8c4292b9479397"}
+    const newimgUrl = "FImg14";
+
+      const update = { $unset: { templateName: newimgUrl } };
+    const result = await products.updateMany(filter,update);
           console.log(result, filter);
           res.json({result});
     } catch (error) {
