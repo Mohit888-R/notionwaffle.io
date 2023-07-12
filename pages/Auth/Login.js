@@ -21,9 +21,9 @@ function Login() {
         return;
       }
     
-     if(Cookies.get('userId') !== undefined || Cookies.get('userId') !== null || Cookies.get('userid') !== ''){
+     if(Cookies.get('userId') === undefined || Cookies.get('userId') === null || Cookies.get('userId') === ''){
        login({ email, password }).then((response) => {   
-
+        console.log(response?.data?.message?.userId)
         if(response?.data?.statusCode == 200){
           Cookies.set('userId',response?.data?.message?.userId);
           alert('Successfully logged in');

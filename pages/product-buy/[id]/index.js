@@ -9,7 +9,8 @@ import CarouselProduct from "../../../components/carouselProduct";
 import { useRouter } from 'next/router';
 import {templatesData} from "../../../utils/constant";
 import {checkoutpayment} from '../../../components/paymentwindow';
-import { product } from '../../../api-call';
+import { product, productSave } from '../../../api-call';
+import Cookies from 'js-cookie';
 
 function index() { 
     const router = useRouter();
@@ -20,7 +21,7 @@ function index() {
     const [category, setCategory] = useState('');
     const [about, setAbout] = useState('');
     const [media, setMedia] = useState([]);
-
+    const [productId, setProductId] = useState('');
     
 
     const titlehead = router?.query?.title;
@@ -33,12 +34,24 @@ function index() {
                     setCategory(items.categoryName);
                     setAbout(items.aboutTemplate);
                     setMedia(items.videoLink)
+                    setProductId(items?.productId)
                 }
             })
         })
     },[router?.query])
 
+
     console.log("price",category)
+
+    const handleSave = ()=>{
+        if(Cookies.get('userId') !== undefined || Cookies.get('userId') !== null || Cookies.get('userid') !== ''){
+            productSave(Cookies.get('userId'),productId).then((response) => {
+                alert("product saved successfully!!!")
+            })
+        }else{
+            router.push('/Auth/Login')
+        } 
+    }
 
 
     return (
@@ -59,7 +72,7 @@ function index() {
                                 <button className='border  px-2 py-1 active:scale-110 flex gap-2 text-white bg-[#1976D2]' ><BiCart className="w-6 h-6"/> Add to Cart</button>
                                 <button onClick={()=>checkoutpayment(amount)} className='border  px-2 py-1 active:scale-110 flex text-white bg-[#FF9800]' ><BiPurchaseTag className='w-6 h-6 mr-2'/> Buy Now</button>
                                 <div className='flex gap-4'>
-                                    <button className='border border-black px-2 py-1 flex gap-2 active:scale-110' >
+                                    <button className='border border-black px-2 py-1 flex gap-2 active:scale-110' onClick={()=>handleSave()}>
                                     <BsBookmark className='w-5 h-5 '/>
                                     </button>
                                     {/* <button className='border gap-2 border-black px-2 py-1 active:scale-110 flex' ><BiDownload className='w-6 h-6'/> 25</button> */}

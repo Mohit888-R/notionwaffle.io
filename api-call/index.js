@@ -81,3 +81,18 @@ export async function product(){
     headers = {...headers};
     return await Axios.get(url, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
+
+
+export async function productSave(userId,productId){
+    const url = `${URI}/saveproduct/saveProduct`;
+    const payload = {userId,productId};
+    headers = {...headers};
+    return await Axios.post(url,payload, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
+export async function getSavedProduct(userId){
+    const url = `${URI}/saveProduct/getsavedProduct`;
+    const payload = {userId};
+    headers = {...headers};
+    return await Axios.get(url,payload, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}

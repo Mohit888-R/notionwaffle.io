@@ -77,6 +77,10 @@ function navbar({ setopen }) {
     const [Index, setIndex] = useState(0);
     const [userId, setUserId] = useState(false);
 
+    const handleSave = ()=>{
+        router.push('/savedproducts');
+    }
+
     useEffect(()=>{
         if((Cookies.get('userId') === undefined || Cookies.get('userId') === null || Cookies.get('userId') === '' ) ){
             setUserId(true);
@@ -164,7 +168,7 @@ function navbar({ setopen }) {
                                     (open) ? (<ul className='border border-black  text-center bg-slate-200 rounded-md'>
                                         
                                             <li className='border-b border-black p-2 hover:cursor-pointer'>Profile</li>
-                                            <li className='border-b border-black p-2 hover:cursor-pointer'>Saved</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer' onClick={()=>handleSave()}>Saved</li>
                                             <li className='border-b border-black p-2 hover:cursor-pointer'>My Orders</li>
                                     </ul>) : (<div></div>)
                                 }
@@ -179,7 +183,7 @@ function navbar({ setopen }) {
                         <div className='absolute top-20 -m-2 right-4 '>
                             {open ? (<ul className='border border-black  text-center bg-slate-200 rounded-md'>
                                     <li className='border-b border-black p-2 hover:cursor-pointer'>Profile</li>
-                                    <li className='border-b border-black p-2 hover:cursor-pointer'>Saved</li>
+                                    <li className='border-b border-black p-2 hover:cursor-pointer' onClick={()=>handleSave()}>Saved</li>
                                     <li className='border-b border-black p-2 hover:cursor-pointer'>My Orders</li>
                                     <li className='border-b border-black p-2 hover:cursor-pointer' onClick={() => { Cookies.remove('userId'); router.push('/'); setOpen(false) }}>Logout</li>
                             </ul>) : (<div></div>)
