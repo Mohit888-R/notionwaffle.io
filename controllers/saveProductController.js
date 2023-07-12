@@ -5,7 +5,6 @@
  const saveProduct = async(req,res)=>{
         const {userId, productId} = req.body;
         try{
-
             const productSaved = await saveProducts.findOne({userId:userId})
             
             if(productSaved){
@@ -20,8 +19,7 @@
                     let savedlistArray = {
                         savingList: savedlist
                     }
-                    
-                    
+
                     const updatedList = await saveProducts.updateOne(productSaved, savedlistArray,{new:true});
                     console.log(updatedList);
                     return res.status(200).json({success:true, statusCode:200, message:"updated successfully", data:productSaved});
@@ -49,8 +47,7 @@
     const {userId} = req.body;
 
     try {
-        const savedProduct = await saveProducts.find({userId: userId});
-
+        const savedProduct = await saveProducts.findOne({userId});
         return res.status(200).json({success :true, statusCode : 200, message:"All saved products", dataObject : savedProduct});
 
     }catch(err){

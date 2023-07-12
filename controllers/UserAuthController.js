@@ -24,11 +24,11 @@ const Register = async(req,res)=>{
 
 
 const Login = async (req,res)=>{
-    const {email,password} = req.body;
+    const {email,password, userId} = req.body;
 
     try{
         const MailExist = await userAuth.findOne({ email: email, password: password})
-        const userData  = {email : email, password : password};
+        const userData  = {email : email, password : password, userId : MailExist.userId};
 
         if(MailExist){
             res.status(200).json({success: true, statusCode :200, message: userData});
