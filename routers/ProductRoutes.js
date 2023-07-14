@@ -4,7 +4,7 @@ const {postProduct, getProducts, getProductById, updateProduct} = require('../co
 
 
 router.post('/postProducts',postProduct);
-router.get('/getProductById/:id',getProductById);
+router.get('/getProductById',getProductById);
 router.get('/getProducts', getProducts); 
 router.put('/updateProduct', updateProduct);
 

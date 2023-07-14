@@ -51,9 +51,9 @@ const getProducts = async (req, res) => {
 
 const getProductById = async (req, res) => {
     try {
-        const productId = req.params.id;
-        const getProduct = await products.findById(productId);
-        if (!getProduct) {
+        const productId = req.body;
+        const getProduct = await products.findOne({productId:productId});
+        if (getProduct.length < 0) {
             res.status(404).json({ success: false, statusCode: 404, message: "data not found" });
             return;
         } else {

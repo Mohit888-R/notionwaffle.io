@@ -44,10 +44,10 @@
 
 
  const getsavedProduct = async(req,res)=>{
-    const {userId} = req.body;
-
+    const {userId} = req.query;
     try {
-        const savedProduct = await saveProducts.findOne({userId});
+        console.log(userId);
+        const savedProduct = await saveProducts.findOne({userId:userId})
         return res.status(200).json({success :true, statusCode : 200, message:"All saved products", dataObject : savedProduct});
 
     }catch(err){
