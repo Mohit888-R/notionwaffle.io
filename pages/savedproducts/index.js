@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import MobileView from '../../components/Sidebar/mobileView';
-import { getSavedProduct } from '../../api-call';
+import { getSavedProduct, productById } from '../../api-call';
 import Cookies from 'js-cookie';
 
 function index() {
@@ -11,9 +11,13 @@ function index() {
 
     useEffect(()=>{
         getSavedProduct(Cookies.get('userId')).then((response)=>{
-            console.log(response);
+            setData(response?.data?.dataObject?.savingList);
+            response?.data?.dataObject?.savingList.forEach(i => {
+                console.log(productById(i));
+            });
         })
     },[])
+
 
   return (
     <div>
@@ -21,9 +25,11 @@ function index() {
     <MobileView open={open} setopen={setOpen} />
     {!open ? (
         <div>
-                this is savedlist
-            
-
+            {data.map((items)=>(
+                <li type="none">
+                   {items}
+                </li>
+            ))}
             <Footer />
         </div>
     ) : (<div></div>)

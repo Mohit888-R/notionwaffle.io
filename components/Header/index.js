@@ -78,7 +78,7 @@ function navbar({ setopen }) {
     const [userId, setUserId] = useState(false);
 
     const handleSave = ()=>{
-        router.push('/savedproducts');
+            router.push('/savedproducts');
     }
 
     useEffect(()=>{
@@ -167,9 +167,9 @@ function navbar({ setopen }) {
                                 {
                                     (open) ? (<ul className='border border-black  text-center bg-slate-200 rounded-md'>
                                         
-                                            <li className='border-b border-black p-2 hover:cursor-pointer'>Profile</li>
-                                            <li className='border-b border-black p-2 hover:cursor-pointer' onClick={()=>handleSave()}>Saved</li>
-                                            <li className='border-b border-black p-2 hover:cursor-pointer'>My Orders</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer' onClick={()=>router.push('/Auth/Login')}>Profile</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer' onClick={()=>router.push('/Auth/Login')}>Saved</li>
+                                            <li className='border-b border-black p-2 hover:cursor-pointer' onClick={()=>router.push('/Auth/Login')}>My Orders</li>
                                     </ul>) : (<div></div>)
                                 }
                             </div>

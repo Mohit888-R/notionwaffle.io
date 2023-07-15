@@ -1,9 +1,9 @@
 const Axios = require('axios');
 const Cookies = require('js-cookie');
 
-// const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
+const URI = 'https://notinowaffle-acntiqo7h-mohit888-r.vercel.app/api/v1'
 // const URI = 'https://notinowaffle-ltr53m3al-mohit888-r.vercel.app/api/v1'
-const URI = 'http://localhost:5000/api/v1';
+// const URI = 'http://localhost:5000/api/v1';
 
 
 let headers = {
@@ -82,6 +82,13 @@ export async function product(){
     return await Axios.get(url, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
 
+export async function productById(productId){
+    const url = `${URI}/product/getProductsById`;
+    const data = {productId}
+    headers = {...headers};
+    return await Axios.get(url,data, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+}
+
 
 export async function productSave(userId,productId){
     const url = `${URI}/saveproduct/saveProduct`;
@@ -91,8 +98,8 @@ export async function productSave(userId,productId){
 }
 
 export async function getSavedProduct(userId){
-    const url = `${URI}/saveProduct/getsavedProduct`;
-    const payload = {userId};
+    const url = `${URI}/saveProduct/getsavedProduct?userId=${userId}`;
+    // const payload = {userId};
     headers = {...headers};
-    return await Axios.get(url,payload, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+    return await Axios.get(url,{}, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
 }
