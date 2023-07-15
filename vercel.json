@@ -31,6 +31,47 @@
         {
             "src": "/api/v1/testimonial/topTestimonials",
             "dest": "/routers/controllers"
+        },
+        {
+            "src":"api/v1/product/postProducts",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/product/getProductById",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/product/getProducts",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/product/updateProduct",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/payment/checkout",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/payment/paymentverification",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/authentication/register",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/authentication/login",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/saveproduct/saveProduct",
+            "dest":"/routers/controllers"
+        },
+        {
+            "src":"api/v1/saveproduct/getsavedProduct",
+            "dest":"/routers/controllers"
         }
+        
     ]
 }
