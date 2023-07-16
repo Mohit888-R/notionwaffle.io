@@ -4,6 +4,7 @@ import Footer from "../../../components/Footer/index";
 import MobileView from '../../../components/Sidebar/mobileView';
 import Tagline from "../../../components/tagline";
 import { BiDownload,BiCart, BiPurchaseTag, BiCategory } from 'react-icons/bi';
+import {BsBookmarkFill} from "react-icons/bs";
 import { BsBookmark } from 'react-icons/bs';
 import CarouselProduct from "../../../components/carouselProduct";
 import { useRouter } from 'next/router';
@@ -22,6 +23,9 @@ function index() {
     const [about, setAbout] = useState('');
     const [media, setMedia] = useState([]);
     const [productId, setProductId] = useState('');
+    const [ImgUrl, setImgUrl] = useState('');
+    const [templateName, setTemplateName] = useState('');
+    const [saved, setSaved] = useState(false);
     
 
     const titlehead = router?.query?.title;
@@ -29,6 +33,8 @@ function index() {
         product().then((response) => {
             response?.data?.data.map((items,key)=>{
                 if(items.templateName === router?.query?.title){
+                    setTemplateName(items?.templateName)
+                    setImgUrl(items?.imgUrl[0])
                     setAmount(items?.price)
                     setDescription(items.description);
                     setCategory(items.categoryName);
@@ -40,12 +46,26 @@ function index() {
         })
     },[router?.query])
 
-
-    console.log("price",category)
-
+    useEffect(()=>{
+        const dataset = Cookies.get('savelisting')
+        if(Cookies.get('savelisting') === undefined || Cookies.get('savelisting') === null || Cookies.get('savelisting') === ""){
+           setSaved(false);
+        }else{
+            JSON.parse(dataset).forEach(element => {
+                if(element?.productId == productId){
+                    setSaved(true);
+                }else{
+                    setSaved(false);
+                }
+            });
+        }
+    },[productId])
+    
     const handleSave = ()=>{
         if(Cookies.get('userId') !== undefined || Cookies.get('userId') !== null || Cookies.get('userid') !== ''){
-            productSave(Cookies.get('userId'),productId).then((response) => {
+            productSave(Cookies.get('userId'),productId, ImgUrl, templateName, category, amount ).then((response) => {
+                const savingListString = JSON.stringify(response?.data?.dataObject?.savingList);
+                Cookies.set("savelisting", savingListString);
                 alert("product saved successfully!!!")
             })
         }else{
@@ -73,7 +93,11 @@ function index() {
                                 <button onClick={()=>checkoutpayment(amount)} className='border  px-2 py-1 active:scale-110 flex text-white bg-[#FF9800]' ><BiPurchaseTag className='w-6 h-6 mr-2'/> Buy Now</button>
                                 <div className='flex gap-4'>
                                     <button className='border border-black px-2 py-1 flex gap-2 active:scale-110' onClick={()=>handleSave()}>
-                                    <BsBookmark className='w-5 h-5 '/>
+                                    {!saved?
+                                    (<BsBookmark className='w-5 h-5 '/>):(<div>
+                                        <BsBookmarkFill className='w-5 h-5 '/>
+                                    </div>)
+                                    }
                                     </button>
                                     {/* <button className='border gap-2 border-black px-2 py-1 active:scale-110 flex' ><BiDownload className='w-6 h-6'/> 25</button> */}
                                 </div>
