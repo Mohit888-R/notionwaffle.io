@@ -10,7 +10,7 @@ import CarouselProduct from "../../../components/carouselProduct";
 import { useRouter } from 'next/router';
 import {templatesData} from "../../../utils/constant";
 import {checkoutpayment} from '../../../components/paymentwindow';
-import { product, productSave } from '../../../api-call';
+import { getSavedProduct, product, productSave } from '../../../api-call';
 import Cookies from 'js-cookie';
 
 function index() { 
@@ -26,7 +26,7 @@ function index() {
     const [ImgUrl, setImgUrl] = useState('');
     const [templateName, setTemplateName] = useState('');
     const [saved, setSaved] = useState(false);
-    
+
 
     const titlehead = router?.query?.title;
     useEffect(()=>{
@@ -47,11 +47,12 @@ function index() {
     },[router?.query])
 
     useEffect(()=>{
-        const dataset = Cookies.get('savelisting')
-        if(Cookies.get('savelisting') === undefined || Cookies.get('savelisting') === null || Cookies.get('savelisting') === ""){
+        const dataset = Cookies.get('savinglist')
+        if(Cookies.get('savinglist') === undefined || Cookies.get('savinglist') === null || Cookies.get('savinglist') === ""){
            setSaved(false);
         }else{
             JSON.parse(dataset).forEach(element => {
+                console.log(element?.productId, productId)
                 if(element?.productId == productId){
                     setSaved(true);
                 }else{
@@ -60,6 +61,12 @@ function index() {
             });
         }
     },[productId])
+
+    useEffect(()=>{
+        getSavedProduct(Cookies.get('userId')).then((response) => {
+            Cookies.set('savinglist',JSON.stringify(response?.data?.dataObject?.savingList))
+        })
+    },[])
     
     const handleSave = ()=>{
         if(Cookies.get('userId') !== undefined || Cookies.get('userId') !== null || Cookies.get('userid') !== ''){
@@ -72,6 +79,7 @@ function index() {
             router.push('/Auth/Login')
         } 
     }
+
 
 
     return (
@@ -94,7 +102,8 @@ function index() {
                                 <div className='flex gap-4'>
                                     <button className='border border-black px-2 py-1 flex gap-2 active:scale-110' onClick={()=>handleSave()}>
                                     {!saved?
-                                    (<BsBookmark className='w-5 h-5 '/>):(<div>
+                                    (<div>
+                                    <BsBookmark className='w-5 h-5 '/> {console.log(saved)}</div> ):(<div>
                                         <BsBookmarkFill className='w-5 h-5 '/>
                                     </div>)
                                     }
