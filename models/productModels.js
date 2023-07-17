@@ -3,7 +3,8 @@ let Schema = mongoose.Schema;
 
 const ProductSchema = new mongoose.Schema({
     productId: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        required : true,
     },
     imgUrl: {
         type: [{

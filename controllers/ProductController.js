@@ -48,16 +48,16 @@ const getProducts = async (req, res) => {
 }
 
 
-
+// somethign wrong with api call 
 const getProductById = async (req, res) => {
     try {
         const productId = req.body;
         const getProduct = await products.findOne({productId:productId});
+        console.log("getproduct : ",getProduct);
         if (getProduct.length < 0) {
-            res.status(404).json({ success: false, statusCode: 404, message: "data not found" });
-            return;
+            return res.status(404).json({ success: false, statusCode: 404, message: "data not found" });
         } else {
-            res.status(200).json({ success: true, statusCode : 200, message: "data found", data : getProduct });
+            return res.status(200).json({ success: true, statusCode : 200, message: "data found", data : getProduct });
         }
     } catch (error) {
         res.status(500).json(error.message);

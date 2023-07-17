@@ -1,15 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const saveProductSchema = new mongoose.Schema({
-    userId : {
+  userId: {
+    type: String,
+    required: true,
+  },
+  savingList: [
+    {
+      productId: {
+        type: String, 
+      },
+      templateName:{
         type: String,
-        required: true
+      },
+      ImgUrl: {
+        type: String,
+      },
+      categoryName: {
+        type: String,
+      },
+      price: {
+        type: String,
+      },
     },
-   savingList : {
-    type : [{type: String,
-    required: true}],
-    required: true
-   }
+  ],
 });
 
-module.exports = new mongoose.model('saveProducts',saveProductSchema);
+module.exports = mongoose.model("saveProducts", saveProductSchema); 
