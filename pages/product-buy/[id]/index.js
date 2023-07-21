@@ -8,14 +8,12 @@ import {BsBookmarkFill} from "react-icons/bs";
 import { BsBookmark } from 'react-icons/bs';
 import CarouselProduct from "../../../components/carouselProduct";
 import { useRouter } from 'next/router';
-import {templatesData} from "../../../utils/constant";
 import {checkoutpayment} from '../../../components/paymentwindow';
 import { getSavedProduct, product, productSave } from '../../../api-call';
 import Cookies from 'js-cookie';
 
 function index() { 
     const router = useRouter();
-    
     const [open, setOpen] = useState(false);
     const [amount, setAmount] = useState(0);
     const [description, setDescription] = useState('');
