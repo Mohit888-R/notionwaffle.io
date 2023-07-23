@@ -41,4 +41,13 @@ const Login = async (req,res)=>{
     }
 }
 
+const getUserDetails = (req, res) => {
+    const {userName, email, userid} = req.body;
+    try{
+        console.log("Getting");
+    }catch(err){
+        return res.status(400).json({success:false, statusCode:404, message: err.message});
+    }
+}
+
 module.exports = {Register,Login};
