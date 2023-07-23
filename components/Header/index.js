@@ -76,7 +76,6 @@ function navbar({ setopen }) {
   const [Index, setIndex] = useState(0);
   const [userId, setUserId] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
-    console.log(":::",popupOpen)
   const handleSave = () => {
     router.push("/savedproducts");
   };
