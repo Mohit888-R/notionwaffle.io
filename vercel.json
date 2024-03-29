@@ -1,8 +1,8 @@
 {
     "version": 2,
     "env": {
-        "PORT": "https://notinowaffle-io-oxy4.vercel.app/",
-        "MONGODB_URI": "mongodb+srv://narukamohit88:FBzQ4d5pebP2jT0U@cluster0.rmmutgt.mongodb.net/?retryWrites=true&w=majority"
+        "PORT": "5000",
+        "MONGODB_URI": "mongodb+srv://narukamohit88:3lnBFgnP8hPs5w0D@cluster0.ujl6v3j.mongodb.net/?retryWrites=true&w=majority"
     },
     "builds": [
         {
