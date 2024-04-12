@@ -4,15 +4,12 @@
         "PORT": "5000",
         "MONGODB_URI": "mongodb+srv://narukamohit88:3lnBFgnP8hPs5w0D@cluster0.ujl6v3j.mongodb.net/?retryWrites=true&w=majority"
     },
-    "builds": [
-        {
-            "src": "./index.js",
-            "use": "@vercel/node",
-            "config": {}
-        }
-    ],
-    "routes": [
-        {
+    "builds": [{
+        "src": "./index.js",
+        "use": "@vercel/node",
+        "config": {}
+    }],
+    "routes": [{
             "src": "/(.*)",
             "dest": "/"
         },
@@ -33,45 +30,45 @@
             "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/product/postProducts",
-            "dest":"/routers/controllers"
+            "src": "api/v1/product/postProducts",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/product/getProductById",
-            "dest":"/routers/controllers"
+            "src": "api/v1/product/getProductById",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/product/getProducts",
-            "dest":"/routers/controllers"
+            "src": "api/v1/product/getProducts",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/product/updateProduct",
-            "dest":"/routers/controllers"
+            "src": "api/v1/product/updateProduct",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/payment/checkout",
-            "dest":"/routers/controllers"
+            "src": "api/v1/payment/checkout",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/payment/paymentverification",
-            "dest":"/routers/controllers"
+            "src": "api/v1/payment/paymentverification",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/authentication/register",
-            "dest":"/routers/controllers"
+            "src": "api/v1/authentication/register",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/authentication/login",
-            "dest":"/routers/controllers"
+            "src": "api/v1/authentication/login",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/saveproduct/saveProduct",
-            "dest":"/routers/controllers"
+            "src": "api/v1/saveproduct/saveProduct",
+            "dest": "/routers/controllers"
         },
         {
-            "src":"api/v1/saveproduct/getsavedProduct",
-            "dest":"/routers/controllers"
+            "src": "api/v1/saveproduct/getsavedProduct",
+            "dest": "/routers/controllers"
         }
-        
+
     ]
 }
