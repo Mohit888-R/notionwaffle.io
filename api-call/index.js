@@ -2,7 +2,7 @@ const Axios = require('axios');
 const Cookies = require('js-cookie');
 
 // const URI = 'https://notinowaffle-io-oxy4-8wxj2jpgm-mohit888-r.vercel.app/api/v1'
-const URI = 'http://localhost:5000/api/v1';
+const URI = 'https://notionwaffle-io.onrender.com';
 
 
 let headers = {
@@ -101,4 +101,5 @@ export async function getSavedProduct(userId){
     const payload = {userId};
     headers = {...headers};
     return await Axios.get(url,payload, {headers}).then((response)=>{return response}).catch(error=>console.log(error));
+
 }
