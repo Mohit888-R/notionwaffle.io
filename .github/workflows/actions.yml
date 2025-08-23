@@ -47,10 +47,9 @@ jobs:
     #   run: npm run build
 
     - name: Deploy to Render
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      env:
-        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-        RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
-      run: |
-        curl -X POST \
-          https://api.render.com/deploy/$RENDER_SERVICE_ID?key=$RENDER_DEPLOY_KEY
+      if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && !failure()
+      uses: JorgeLNJunior/render-deploy@v1.4.5
+      with:
+        service_id: ${{ secrets.RENDER_SERVICE_ID }}
+        api_key: ${{ secrets.RENDER_DEPLOY_KEY }}
+        wait_deploy: true
