@@ -7,7 +7,8 @@
         "dev": "node dev",
         "build": "node build",
         "start": "node start",
-        "lint": "node lint"
+        "lint": "node lint",
+        "format:check":"prettier --check ."
     },
     "keywords": [],
     "author": "",
@@ -25,5 +26,12 @@
         "nodemon": "^2.0.22",
         "razorpay": "^2.8.6",
         "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.34.0",
+        "eslint": "^9.34.0",
+        "eslint-plugin-react": "^7.37.5",
+        "globals": "^16.3.0",
+        "prettier": "^3.6.2"
     }
 }

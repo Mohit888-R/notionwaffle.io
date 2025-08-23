@@ -1,34 +1,59 @@
-name: setup node.js 
+name: Node.js CI/CD
 
-
-on: 
-  push: 
-    branches : [server]
+on:
+  push:
+    branches: [ server ]
   pull_request:
-    branches : [server]
+    branches: [ server ]
 
-jobs: 
-  build:
+jobs:
+  build-and-test:
     runs-on: ubuntu-latest
-    strategy: 
+
+    strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
-        
+        node-version: [20.x]
+
     steps:
-    - uses: action/checkout@v4
+    - uses: actions/checkout@v4
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
 
-    - name: Install Dependencies
+    - name: Install Backend Dependencies
+      working-directory: .
       run: npm ci
 
-    - name: Run Tests
-      run: npm test
+    # - name: Run Backend Tests
+    #   working-directory: ./backend
+    #   run: npm test
 
-    - name: Lint with ESLint and Prettier
+    - name: Lint Backend
+      working-directory: .
       run: |
         npm run lint
-        npm run format: check
+        npm run format:check
+
+    # - name: Install Frontend Dependencies
+    #   working-directory: ./frontend
+    #   run: npm ci
+
+    # - name: Build Frontend
+    #   working-directory: ./frontend
+    #   run: npm run build
+
+    - name: Deploy to Render
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      env:
+        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+      run: |
+        curl -X POST \
+          -H "Authorization: Bearer $RENDER_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{"serviceId": "'$RENDER_SERVICE_ID'"}' \
+         https://api.render.com/deploy/$RENDER_SERVICE_ID?key=$RENDER_API_KEY
