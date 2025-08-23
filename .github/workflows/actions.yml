@@ -48,8 +48,9 @@ jobs:
 
     - name: Deploy to Render
       if: github.event_name == 'push' && github.ref == 'refs/heads/server'
-      uses: JorgeLNJunior/render-deploy@v1.4.5
-      with:
-        service_id: ${{ secrets.RENDER_SERVICE_ID }}
-        api_key: ${{ secrets.RENDER_DEPLOY_KEY }}
-        wait_deploy: true
+      env:
+        RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+        RENDER_DEPLOY_KEY: ${{ secrets.RENDER_DEPLOY_KEY }}
+      run: |
+        curl -X POST \
+          https://api.render.com/deploy/$RENDER_SERVICE_ID?key=$RENDER_DEPLOY_KEY
